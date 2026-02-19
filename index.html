@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABL - Asset-Based Loan</title>
+  <title>Mottu - Seu crédito disponível</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,33 +14,352 @@
 
     <!-- Dev Navigation -->
     <nav class="dev-nav">
-      <div class="dev-nav__title">ABL Mockup Screens</div>
+      <div class="dev-nav__title">Telas do Fluxo</div>
       <div class="dev-nav__links">
-        <a href="pages/offer.html" class="dev-nav__link">1. Oferta</a>
-        <a href="pages/confirmation.html" class="dev-nav__link">2. Confirmação</a>
-        <a href="pages/signature.html" class="dev-nav__link">3. Assinatura</a>
-        <a href="pages/success.html" class="dev-nav__link">4. Sucesso</a>
+        <a href="index.html" class="dev-nav__link dev-nav__link--active">Landing</a>
+        <a href="pages/offer.html" class="dev-nav__link">Oferta</a>
+        <a href="pages/confirmation.html" class="dev-nav__link">Confirmação</a>
+        <a href="pages/signature.html" class="dev-nav__link">Assinatura</a>
+        <a href="pages/success.html" class="dev-nav__link">Sucesso</a>
       </div>
     </nav>
 
-    <!-- Landing Page Content (blank - to be designed) -->
-    <div class="page-content page-content--centered">
-      <div class="spacer-xl"></div>
-      <div class="spacer-xl"></div>
+    <!-- Hero -->
+    <section class="hero">
+      <span class="hero__eyebrow">Exclusivo para você</span>
+      <h1 class="hero__title">Você tem até <span class="text-green">R$ 4.000</span> de crédito disponível</h1>
+      <p class="hero__subtitle">Saque agora direto na sua conta e pague em parcelas fixas. O que sobrar, continua no seu MottuPay para usar quando quiser.</p>
+    </section>
 
-      <div class="hero-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-        </svg>
+    <!-- Simulator -->
+    <section class="simulator">
+      <div class="section-label">Simule seu saque</div>
+
+      <!-- Amount Slider -->
+      <div class="simulator__label">Quanto você quer sacar agora?</div>
+      <div class="simulator__amount-display">
+        <span class="simulator__amount-value"><small>R$</small> <span id="amountDisplay">2.000</span></span>
+      </div>
+      <div class="slider-container">
+        <input type="range" class="slider" id="amountSlider" min="1000" max="4000" step="500" value="2000">
+      </div>
+      <div class="slider-labels">
+        <span>R$ 1.000</span>
+        <span>R$ 4.000</span>
       </div>
 
-      <h1 class="title title--center">Landing Page</h1>
-      <p class="subtitle subtitle--center">
-        Esta página será o ponto de entrada para o fluxo ABL.<br>
-        Use a navegação acima para visualizar as telas do fluxo.
-      </p>
+      <!-- Term Selector -->
+      <div class="simulator__label">Em quantas parcelas?</div>
+      <div class="term-selector">
+        <button class="term-option" data-months="12" onclick="selectTerm(this)">
+          12x
+          <span>1 ano</span>
+        </button>
+        <button class="term-option active" data-months="18" onclick="selectTerm(this)">
+          18x
+          <span>1 ano e meio</span>
+        </button>
+        <button class="term-option" data-months="24" onclick="selectTerm(this)">
+          24x
+          <span>2 anos</span>
+        </button>
+      </div>
+
+      <!-- Result Card -->
+      <div class="result-card">
+        <div class="result-row">
+          <span class="result-row__label">
+            <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            Saque imediato
+          </span>
+          <span class="result-row__value result-row__value--green" id="resultImmediate">R$ 2.000,00</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row__label">
+            <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            Crédito MottuPay
+          </span>
+          <span class="result-row__value" id="resultMottuPay">
+            R$ 2.000,00
+            <span class="result-row__sub">disponível a qualquer momento</span>
+          </span>
+        </div>
+        <div class="result-row">
+          <span class="result-row__label">
+            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+            Parcela mensal
+          </span>
+          <span class="result-row__value result-row__value--green" id="resultInstallment">
+            R$ 144,44
+            <span class="result-row__sub" id="resultTermLabel">em 18 parcelas</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="note">
+        <svg class="note__icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        <span class="note__text">Seu plano será estendido por <strong id="noteTermMonths">18 meses</strong>. Você poderá transferir a moto para o seu nome a qualquer momento quitando o saldo restante.</span>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits">
+      <div class="section-label">O que você ganha</div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        </div>
+        <div class="benefit-card__text">
+          <div class="benefit-card__title">MottuPay ativo durante todo o plano</div>
+          <div class="benefit-card__description">Continue usando seu crédito restante para compras a qualquer momento até o fim do contrato.</div>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M18 4H6C3.79 4 2 5.79 2 8v8c0 2.21 1.79 4 4 4h12c2.21 0 4-1.79 4-4V8c0-2.21-1.79-4-4-4zm-1.86 9.77c-.24.2-.57.28-.88.22L4.15 11.25V8.11l11.53 2.93c.31.08.55.32.62.63s-.02.63-.16.85v.25z"/></svg>
+        </div>
+        <div class="benefit-card__text">
+          <div class="benefit-card__title">A moto pode ser sua</div>
+          <div class="benefit-card__description">Transfira a moto para o seu nome quando quiser, quitando o saldo restante diretamente pelo app.</div>
+        </div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+        </div>
+        <div class="benefit-card__text">
+          <div class="benefit-card__title">Suporte e manutenção inclusos</div>
+          <div class="benefit-card__description">Todos os serviços que você já conhece continuam disponíveis durante o novo plano.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+      <div class="section-label">Como funciona</div>
+
+      <div class="step">
+        <div class="step__number">1</div>
+        <div class="step__card">
+          <div class="step__title">Escolha e assine</div>
+          <div class="step__description">Defina o valor do saque e o número de parcelas. Assine o novo contrato digitalmente.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step__number">2</div>
+        <div class="step__card">
+          <div class="step__title">Receba na hora</div>
+          <div class="step__description">O dinheiro cai direto na sua conta cadastrada assim que o contrato for assinado.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step__number">3</div>
+        <div class="step__card">
+          <div class="step__title">Pague em parcelas fixas</div>
+          <div class="step__description">Parcelas mensais adicionadas ao seu plano. Sem surpresas, sem reajuste.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <div class="section-label">Perguntas frequentes</div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Quanto vou receber?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            O valor que você escolher no simulador acima será depositado imediatamente na sua conta pessoal cadastrada. Além disso, o crédito restante fica disponível no seu MottuPay para você usar quando precisar, até o fim do plano.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Qual será o valor das parcelas?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Depende do valor sacado e do prazo escolhido. Para um saque de R$ 1.000, por exemplo:
+            <table class="faq-table">
+              <tr><td>12 parcelas</td><td>R$ 100,00/mês</td></tr>
+              <tr><td>18 parcelas</td><td>R$ 72,22/mês</td></tr>
+              <tr><td>24 parcelas</td><td>R$ 58,33/mês</td></tr>
+            </table>
+            O valor pode aumentar caso você realize compras adicionais pelo MottuPay.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Quando recebo o dinheiro?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            O valor do saque será depositado imediatamente, assim que você assinar o contrato. O crédito adicional do MottuPay estará disponível para uso conforme você precisar.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Como funciona a troca de plano?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            O processo tem três etapas: assinatura digital do contrato, depósito imediato do valor na sua conta e extensão automática do prazo do plano. A moto será transferida para o seu nome ao final de todas as parcelas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Posso cancelar depois?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Não. Após receber o crédito, passa a valer a nova duração e formato do contrato.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>E se eu não pagar as parcelas?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            A moto ficará sujeita a recolhimento e rescisão contratual, conforme ocorre em todos os planos.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Quais são as regras do novo plano?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            O novo plano segue as seguintes regras: pagamento mensal, a moto permanece no nome da Mottu e suporte, manutenção e demais produtos continuam disponíveis mediante aprovação e pagamento.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer-xl"></div>
+
+    <!-- Footer CTA -->
+    <div class="page-footer">
+      <a href="pages/confirmation.html" class="btn btn--primary" id="ctaButton">
+        Quero sacar R$ 2.000 agora
+      </a>
     </div>
 
   </div>
+
+  <script>
+    // === Simulator Logic ===
+    const MAX_CREDIT = 4000;
+    const ANNUAL_RATE = 0.20;
+
+    const amountSlider = document.getElementById('amountSlider');
+    const amountDisplay = document.getElementById('amountDisplay');
+    const resultImmediate = document.getElementById('resultImmediate');
+    const resultMottuPay = document.getElementById('resultMottuPay');
+    const resultInstallment = document.getElementById('resultInstallment');
+    const resultTermLabel = document.getElementById('resultTermLabel');
+    const noteTermMonths = document.getElementById('noteTermMonths');
+    const ctaButton = document.getElementById('ctaButton');
+
+    let selectedMonths = 18;
+
+    function formatCurrency(value) {
+      return 'R$ ' + value.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatDisplay(value) {
+      return value.toLocaleString('pt-BR');
+    }
+
+    function calculateInstallment(amount, months) {
+      const totalInterest = ANNUAL_RATE * (months / 12);
+      const total = amount * (1 + totalInterest);
+      return total / months;
+    }
+
+    function updateSimulator() {
+      const amount = parseInt(amountSlider.value);
+      const remaining = MAX_CREDIT - amount;
+      const installment = calculateInstallment(amount, selectedMonths);
+
+      // Update display
+      amountDisplay.textContent = formatDisplay(amount);
+      resultImmediate.textContent = formatCurrency(amount);
+
+      // MottuPay remaining
+      if (remaining > 0) {
+        resultMottuPay.innerHTML = formatCurrency(remaining) +
+          '<span class="result-row__sub">disponível a qualquer momento</span>';
+      } else {
+        resultMottuPay.innerHTML = '—' +
+          '<span class="result-row__sub">todo o crédito será sacado</span>';
+      }
+
+      // Installment
+      resultInstallment.innerHTML = formatCurrency(installment) +
+        '<span class="result-row__sub">em ' + selectedMonths + ' parcelas</span>';
+
+      // Note
+      noteTermMonths.textContent = selectedMonths + ' meses';
+
+      // CTA button
+      ctaButton.textContent = 'Quero sacar ' + formatCurrency(amount) + ' agora';
+
+      // Update slider track fill
+      const pct = ((amount - 1000) / (4000 - 1000)) * 100;
+      amountSlider.style.background =
+        'linear-gradient(to right, #4CAF50 0%, #4CAF50 ' + pct + '%, #333 ' + pct + '%, #333 100%)';
+    }
+
+    function selectTerm(btn) {
+      document.querySelectorAll('.term-option').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      btn.classList.add('active');
+      selectedMonths = parseInt(btn.dataset.months);
+      updateSimulator();
+    }
+
+    function toggleAccordion(btn) {
+      const item = btn.parentElement;
+      // Close others
+      document.querySelectorAll('.accordion-item.active').forEach(function(el) {
+        if (el !== item) el.classList.remove('active');
+      });
+      item.classList.toggle('active');
+    }
+
+    // Init
+    amountSlider.addEventListener('input', updateSimulator);
+    updateSimulator();
+  </script>
 </body>
 </html>
