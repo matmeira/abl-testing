@@ -56,11 +56,11 @@
       <!-- Slider with shadow card -->
       <div class="slider-card">
         <div class="slider-container">
-          <input type="range" class="slider" id="amountSlider" min="0" max="3800" step="100" value="2000">
+          <input type="range" class="slider" id="amountSlider" min="0" max="4000" step="100" value="2000">
         </div>
         <div class="slider-labels">
           <span>R$ 0</span>
-          <span>R$ 3.800</span>
+          <span>R$ 4.000</span>
         </div>
 
         <!-- Split visualization -->
@@ -373,7 +373,6 @@
     // === Simulator Logic ===
     const MAX_CREDIT = 4000;
     const MIN_CREDIT_REMAINING = 200;
-    const MAX_WITHDRAW = MAX_CREDIT - MIN_CREDIT_REMAINING;
     const MIN_AMOUNT = 1000;
     const MAINTENANCE_COST = 200;
 
@@ -471,7 +470,7 @@
       }
 
       // Update slider track fill
-      const pct = (amount / MAX_WITHDRAW) * 100;
+      const pct = (amount / MAX_CREDIT) * 100;
       amountSlider.style.background =
         'linear-gradient(to right, #4CAF50 0%, #4CAF50 ' + pct + '%, #333 ' + pct + '%, #333 100%)';
     }
