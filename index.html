@@ -12,17 +12,28 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- Dev Navigation -->
-    <nav class="dev-nav">
-      <div class="dev-nav__title">Telas do Fluxo</div>
-      <div class="dev-nav__links">
-        <a href="index.html" class="dev-nav__link dev-nav__link--active">Landing</a>
-        <a href="pages/offer.html" class="dev-nav__link">Oferta</a>
-        <a href="pages/confirmation.html" class="dev-nav__link">Confirmação</a>
-        <a href="pages/signature.html" class="dev-nav__link">Assinatura</a>
-        <a href="pages/success.html" class="dev-nav__link">Sucesso</a>
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <div class="step-indicator__item step-indicator__item--active">
+        <div class="step-indicator__number">1</div>
+        <div class="step-indicator__label">Simular</div>
       </div>
-    </nav>
+      <div class="step-indicator__line"></div>
+      <div class="step-indicator__item">
+        <div class="step-indicator__number">2</div>
+        <div class="step-indicator__label">Confirmar</div>
+      </div>
+      <div class="step-indicator__line"></div>
+      <div class="step-indicator__item">
+        <div class="step-indicator__number">3</div>
+        <div class="step-indicator__label">Assinar</div>
+      </div>
+      <div class="step-indicator__line"></div>
+      <div class="step-indicator__item">
+        <div class="step-indicator__number">4</div>
+        <div class="step-indicator__label">Sucesso</div>
+      </div>
+    </div>
 
     <!-- Hero -->
     <section class="hero">
@@ -39,13 +50,55 @@
       <div class="simulator__label">Quanto você quer sacar agora?</div>
       <div class="simulator__amount-display">
         <span class="simulator__amount-value"><small>R$</small> <span id="amountDisplay">2.000</span></span>
+        <div class="simulator__total-credit">de <strong>R$ 4.000</strong> disponíveis</div>
       </div>
-      <div class="slider-container">
-        <input type="range" class="slider" id="amountSlider" min="1000" max="4000" step="500" value="2000">
+
+      <!-- Slider with shadow card -->
+      <div class="slider-card">
+        <div class="slider-container">
+          <input type="range" class="slider" id="amountSlider" min="0" max="4000" step="100" value="2000">
+        </div>
+        <div class="slider-labels">
+          <span>R$ 0</span>
+          <span>R$ 4.000</span>
+        </div>
+
+        <!-- Split visualization -->
+        <div class="slider-split">
+          <div class="slider-split__left" id="sliderSplitLeft">
+            <div class="slider-split__bar slider-split__bar--green" id="splitBarLeft" style="width: 50%"></div>
+            <div class="slider-split__info">
+              <span class="slider-split__value slider-split__value--green" id="splitLeftValue">R$ 2.000</span>
+              <span class="slider-split__desc">Você recebe hoje na conta</span>
+            </div>
+          </div>
+          <div class="slider-split__right" id="sliderSplitRight">
+            <div class="slider-split__bar slider-split__bar--gray" id="splitBarRight" style="width: 50%"></div>
+            <div class="slider-split__info">
+              <span class="slider-split__value" id="splitRightValue">R$ 2.000</span>
+              <span class="slider-split__desc">Disponível via MottuPay</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="slider-labels">
-        <span>R$ 1.000</span>
-        <span>R$ 4.000</span>
+
+      <!-- Minimum amount warning -->
+      <div class="min-amount-warning" id="minAmountWarning" style="display: none;">
+        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+        <span>Você precisa sacar no mínimo R$ 1.000 para utilizar o crédito</span>
+      </div>
+
+      <!-- Maintenance Option -->
+      <div class="maintenance-option">
+        <div class="simulator__label">Você quer manter sua manutenção inclusa durante esse período adicional?</div>
+        <div class="maintenance-toggle">
+          <button class="maintenance-btn active" id="maintenanceYes" onclick="selectMaintenance(true)">Sim</button>
+          <button class="maintenance-btn" id="maintenanceNo" onclick="selectMaintenance(false)">Não</button>
+        </div>
+        <div class="maintenance-info" id="maintenanceInfo">
+          <span class="maintenance-info__cost">+ R$ 200,00/mês</span>
+          <span class="maintenance-info__note">A manutenção será cobrada após o término do seu plano atual.</span>
+        </div>
       </div>
 
       <!-- Term Selector -->
@@ -93,6 +146,10 @@
             R$ 144,44
             <span class="result-row__sub" id="resultTermLabel">em 18 parcelas</span>
           </span>
+        </div>
+        <div class="result-row result-row--info" id="pendingInstallmentsInfo">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <span>Você ainda tem <strong>4 parcelas pendentes</strong> do plano atual. O pagamento das novas parcelas começa no <strong>5º mês</strong>.</span>
         </div>
       </div>
 
@@ -226,6 +283,30 @@
 
       <div class="accordion-item">
         <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>O que acontece com as parcelas que tenho em aberto?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Você ainda tem 4 parcelas em aberto. Os valores da sua parcela não mudam até você pagar essas quatro parcelas, após isso você começará a pagar o valor ilustrado em sua simulação.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Posso transferir minha moto pra meu nome?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Depois que você finalizar seu plano, você pode transferir sua moto a qualquer momento, mediante pagamento antecipado de todos os débitos.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
           <span>Posso cancelar depois?</span>
           <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
         </button>
@@ -261,12 +342,16 @@
       </div>
     </section>
 
-    <div class="spacer-xl"></div>
+    <!-- Scroll sentinel for detecting bottom -->
+    <div id="scrollSentinel" class="scroll-sentinel"></div>
+
+    <!-- Extra space so last FAQ isn't hidden -->
+    <div class="spacer-footer"></div>
 
     <!-- Footer CTA -->
     <div class="page-footer">
-      <a href="pages/confirmation.html" class="btn btn--primary" id="ctaButton">
-        Quero sacar R$ 2.000 agora
+      <a href="pages/confirmation.html" class="btn btn--primary btn--disabled" id="ctaButton" onclick="return handleCtaClick(event)">
+        Quero sacar R$ 2.000,00 agora
       </a>
     </div>
 
@@ -275,7 +360,9 @@
   <script>
     // === Simulator Logic ===
     const MAX_CREDIT = 4000;
+    const MIN_AMOUNT = 1000;
     const ANNUAL_RATE = 0.20;
+    const MAINTENANCE_COST = 200;
 
     const amountSlider = document.getElementById('amountSlider');
     const amountDisplay = document.getElementById('amountDisplay');
@@ -285,8 +372,15 @@
     const resultTermLabel = document.getElementById('resultTermLabel');
     const noteTermMonths = document.getElementById('noteTermMonths');
     const ctaButton = document.getElementById('ctaButton');
+    const minAmountWarning = document.getElementById('minAmountWarning');
+    const splitLeftValue = document.getElementById('splitLeftValue');
+    const splitRightValue = document.getElementById('splitRightValue');
+    const splitBarLeft = document.getElementById('splitBarLeft');
+    const splitBarRight = document.getElementById('splitBarRight');
 
     let selectedMonths = 18;
+    let maintenanceIncluded = true;
+    let hasScrolledToBottom = false;
 
     function formatCurrency(value) {
       return 'R$ ' + value.toLocaleString('pt-BR', {
@@ -302,17 +396,30 @@
     function calculateInstallment(amount, months) {
       const totalInterest = ANNUAL_RATE * (months / 12);
       const total = amount * (1 + totalInterest);
-      return total / months;
+      let installment = total / months;
+      if (maintenanceIncluded) {
+        installment += MAINTENANCE_COST;
+      }
+      return installment;
     }
 
     function updateSimulator() {
       const amount = parseInt(amountSlider.value);
       const remaining = MAX_CREDIT - amount;
       const installment = calculateInstallment(amount, selectedMonths);
+      const isBelowMin = amount < MIN_AMOUNT;
 
       // Update display
       amountDisplay.textContent = formatDisplay(amount);
       resultImmediate.textContent = formatCurrency(amount);
+
+      // Split visualization
+      const pctLeft = (amount / MAX_CREDIT) * 100;
+      const pctRight = 100 - pctLeft;
+      splitBarLeft.style.width = pctLeft + '%';
+      splitBarRight.style.width = pctRight + '%';
+      splitLeftValue.textContent = 'R$ ' + formatDisplay(amount);
+      splitRightValue.textContent = 'R$ ' + formatDisplay(remaining);
 
       // MottuPay remaining
       if (remaining > 0) {
@@ -324,19 +431,60 @@
       }
 
       // Installment
-      resultInstallment.innerHTML = formatCurrency(installment) +
-        '<span class="result-row__sub">em ' + selectedMonths + ' parcelas</span>';
+      if (amount > 0) {
+        resultInstallment.innerHTML = formatCurrency(installment) +
+          (maintenanceIncluded ? '<span class="result-row__sub">inclui R$ 200 de manutenção</span>' : '') +
+          '<span class="result-row__sub" id="resultTermLabel">em ' + selectedMonths + ' parcelas</span>';
+      } else {
+        resultInstallment.innerHTML = '—' +
+          '<span class="result-row__sub">selecione um valor acima</span>';
+      }
 
       // Note
       noteTermMonths.textContent = selectedMonths + ' meses';
 
-      // CTA button
-      ctaButton.textContent = 'Quero sacar ' + formatCurrency(amount) + ' agora';
+      // Minimum warning & CTA state
+      if (isBelowMin) {
+        minAmountWarning.style.display = 'flex';
+        ctaButton.classList.add('btn--disabled');
+        ctaButton.textContent = 'Quero sacar R$ ' + formatDisplay(amount) + ',00 agora';
+      } else {
+        minAmountWarning.style.display = 'none';
+        ctaButton.textContent = 'Quero sacar ' + formatCurrency(amount) + ' agora';
+        updateCtaState();
+      }
 
       // Update slider track fill
-      const pct = ((amount - 1000) / (4000 - 1000)) * 100;
+      const pct = (amount / 4000) * 100;
       amountSlider.style.background =
         'linear-gradient(to right, #4CAF50 0%, #4CAF50 ' + pct + '%, #333 ' + pct + '%, #333 100%)';
+    }
+
+    function updateCtaState() {
+      const amount = parseInt(amountSlider.value);
+      if (amount < MIN_AMOUNT) {
+        ctaButton.classList.add('btn--disabled');
+      } else if (!hasScrolledToBottom) {
+        ctaButton.classList.add('btn--disabled');
+      } else {
+        ctaButton.classList.remove('btn--disabled');
+      }
+    }
+
+    function handleCtaClick(e) {
+      if (ctaButton.classList.contains('btn--disabled')) {
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    }
+
+    function selectMaintenance(yes) {
+      maintenanceIncluded = yes;
+      document.getElementById('maintenanceYes').classList.toggle('active', yes);
+      document.getElementById('maintenanceNo').classList.toggle('active', !yes);
+      document.getElementById('maintenanceInfo').style.display = yes ? 'flex' : 'none';
+      updateSimulator();
     }
 
     function selectTerm(btn) {
@@ -349,13 +497,24 @@
     }
 
     function toggleAccordion(btn) {
-      const item = btn.parentElement;
-      // Close others
+      var item = btn.parentElement;
       document.querySelectorAll('.accordion-item.active').forEach(function(el) {
         if (el !== item) el.classList.remove('active');
       });
       item.classList.toggle('active');
     }
+
+    // Scroll detection - enable CTA when user scrolls to bottom
+    var scrollSentinel = document.getElementById('scrollSentinel');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          hasScrolledToBottom = true;
+          updateCtaState();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(scrollSentinel);
 
     // Init
     amountSlider.addEventListener('input', updateSimulator);
