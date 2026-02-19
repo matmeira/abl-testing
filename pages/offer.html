@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABL - Oferta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Header Banner -->
+    <div class="header-banner">
+      <div class="header-banner__icon">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <path d="M48 36a12 12 0 1 1-24 0 12 12 0 0 1 24 0zm-12-8a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/>
+          <path d="M28 36a12 12 0 1 1-24 0 12 12 0 0 1 24 0zm-12-8a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/>
+          <path d="M22 20h20l4-8H18l4 8zm2-4h16l-2 4H26l-2-4z"/>
+          <rect x="20" y="28" width="24" height="4" rx="2"/>
+          <path d="M52 32h4a4 4 0 0 1 0 8h-4v-8zM8 32h4v8H8a4 4 0 0 1 0-8z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <div class="spacer-lg"></div>
+
+      <h1 class="title">Você topa repactuar seu contrato por mais <span class="text-green">12 meses</span>?</h1>
+
+      <p class="subtitle">
+        Em troca, você recebe um <strong>cashback de R$ 4.000</strong> direto na sua conta.
+        É a forma da <strong>Mottu</strong> valorizar sua parceria e te ajudar a seguir crescendo.
+      </p>
+
+      <!-- Plan Conditions Card -->
+      <div class="card card--accent">
+        <div class="card__title">Condições do Novo Plano</div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95.49-7.4-2.18-7.93-6.13S7.25 6.4 11.2 5.87V12l4.24 4.24c-.95.96-2.17 1.58-3.44 1.69z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Cashback</div>
+            <div class="card-row__value">R$ 4.000,00 na sua conta</div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Pagamento Mensal</div>
+            <div class="card-row__value">12x de R$ 500,00</div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M48 36a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-10-6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/>
+              <path d="M26 36a10 10 0 1 1-20 0 10 10 0 0 1 20 0zm-10-6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/>
+              <rect x="18" y="30" width="20" height="3" rx="1.5"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Moto e Serviços</div>
+            <div class="card-row__value">Mesmas condições atuais</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="section-label">Perguntas Frequentes</div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Quando vou receber o cashback?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            O cashback será depositado na sua conta em até 30 dias após a assinatura digital do novo contrato.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Posso cancelar depois de aceitar?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Após a assinatura do contrato, o compromisso é de 12 meses. Consulte as condições de cancelamento antecipado no contrato.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>O valor da mensalidade muda?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            O valor da mensalidade permanece o mesmo das condições atuais do seu plano. Sem surpresas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>O que acontece com meu contrato atual?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Seu contrato atual será substituído pelo novo contrato de 12 meses. Todas as condições de moto e serviços serão mantidas.
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="disclaimer">
+        Ao clicar em "Quero receber meu cashback", você confirma que leu e concorda com as condições do novo plano apresentadas acima.
+      </p>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="page-footer">
+      <a href="confirmation.html" class="btn btn--primary">
+        Quero receber meu cashback
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleAccordion(btn) {
+      const item = btn.parentElement;
+      item.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
