@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABL - Confirmação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <div class="step-indicator__item step-indicator__item--completed">
+        <div class="step-indicator__number">1</div>
+        <div class="step-indicator__label">Simular</div>
+      </div>
+      <div class="step-indicator__line step-indicator__line--completed"></div>
+      <div class="step-indicator__item step-indicator__item--active">
+        <div class="step-indicator__number">2</div>
+        <div class="step-indicator__label">Confirmar</div>
+      </div>
+      <div class="step-indicator__line"></div>
+      <div class="step-indicator__item">
+        <div class="step-indicator__number">3</div>
+        <div class="step-indicator__label">Assinar</div>
+      </div>
+      <div class="step-indicator__line"></div>
+      <div class="step-indicator__item">
+        <div class="step-indicator__number">4</div>
+        <div class="step-indicator__label">Sucesso</div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="spacer-md"></div>
+
+      <!-- Back Button - preserves state via URL params -->
+      <a href="../index.html" class="back-btn" id="backBtn">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Voltar
+      </a>
+
+      <div class="spacer-md"></div>
+
+      <h1 class="title">Confirmação do <span class="text-green">Cashback</span></h1>
+      <p class="subtitle">Verifique os dados antes de continuar.</p>
+
+      <!-- Confirmation Card -->
+      <div class="card card--accent">
+        <div class="card__title">Valor a Receber</div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Cashback Imediato</div>
+            <div class="card-row__value card-row__value--large" id="confirmAmount">R$ 2.000,00</div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Crédito MottuPay</div>
+            <div class="card-row__value" id="confirmMottuPay">R$ 2.000,00</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Novo Plano</div>
+            <div class="card-row__value" id="confirmPlan">18x de R$ 344,44</div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Recebimento do Cashback</div>
+            <div class="card-row__value" id="confirmDate">Hoje</div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Manutenção</div>
+            <div class="card-row__value" id="confirmMaintenance">Inclusa (+ R$ 200/mês)</div>
+          </div>
+        </div>
+
+        <div class="card-row">
+          <div class="card-row__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            </svg>
+          </div>
+          <div class="card-row__text">
+            <div class="card-row__label">Limite MottuPay restante *</div>
+            <div class="card-row__value" id="confirmMottuPayLimit">R$ 2.000,00</div>
+            <div class="card-row__footnote">* Limite pode ser alterado a qualquer momento durante o plano</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Simulation -->
+      <div class="card">
+        <div class="card__title">Simulação de Pagamentos</div>
+
+        <!-- Current Plan -->
+        <div class="payment-sim__section">
+          <div class="payment-sim__header">Plano Atual (4 faturas restantes de R$ 600,00)</div>
+          <table class="payment-sim__table">
+            <thead>
+              <tr>
+                <th>Mês</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody id="currentPlanRows">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="divider" style="margin: 12px 0;"></div>
+
+        <!-- New Plan (cashback installments) -->
+        <div class="payment-sim__section">
+          <div class="payment-sim__header" id="newPlanHeader">Novo Plano (18 faturas)</div>
+          <table class="payment-sim__table">
+            <thead>
+              <tr>
+                <th>Fatura</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody id="newPlanRows">
+              <!-- Filled by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Note -->
+      <div class="note">
+        <svg class="note__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span class="note__text">Ao confirmar, enviaremos o contrato para assinatura digital no seu e-mail.</span>
+      </div>
+
+      <div class="spacer-footer"></div>
+    </div>
+
+    <!-- Footer CTAs -->
+    <div class="page-footer">
+      <a href="signature.html" class="btn btn--primary" id="confirmBtn">
+        Confirmar e assinar
+        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+      </a>
+      <a href="../index.html" class="btn btn--ghost" id="backBtnFooter">Voltar</a>
+    </div>
+
+  </div>
+
+  <script>
+    // Parse URL parameters
+    var params = new URLSearchParams(window.location.search);
+    var amount = parseInt(params.get('amount')) || 2000;
+    var months = parseInt(params.get('months')) || 18;
+    var maintenance = params.get('maintenance') === '1';
+    var remaining = parseInt(params.get('remaining')) || 2000;
+    var installment = parseFloat(params.get('installment')) || 344.44;
+
+    // Constants
+    var CURRENT_PLAN_INSTALLMENTS = 4;
+    var CURRENT_PLAN_VALUE = 600;
+
+    function formatCurrency(value) {
+      return 'R$ ' + value.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    // Get today's date formatted
+    function getTodayFormatted() {
+      var today = new Date();
+      var day = String(today.getDate()).padStart(2, '0');
+      var monthNum = String(today.getMonth() + 1).padStart(2, '0');
+      var year = today.getFullYear();
+      return day + '/' + monthNum + '/' + year;
+    }
+
+    // Get month name
+    function getMonthName(offset) {
+      var months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+      var today = new Date();
+      var futureMonth = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+      return months[futureMonth.getMonth()] + '/' + futureMonth.getFullYear();
+    }
+
+    // Populate confirmation values
+    document.getElementById('confirmAmount').textContent = formatCurrency(amount);
+    document.getElementById('confirmMottuPay').textContent = formatCurrency(remaining);
+    document.getElementById('confirmPlan').textContent = months + 'x de ' + formatCurrency(installment);
+    document.getElementById('confirmDate').textContent = 'Hoje (' + getTodayFormatted() + ')';
+    document.getElementById('confirmMaintenance').textContent = maintenance
+      ? 'Inclusa (+ R$ 200,00/mês)'
+      : 'Não inclusa';
+    document.getElementById('confirmMottuPayLimit').textContent = formatCurrency(remaining);
+
+    // Build current plan rows
+    var currentPlanRows = document.getElementById('currentPlanRows');
+    for (var i = 1; i <= CURRENT_PLAN_INSTALLMENTS; i++) {
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + getMonthName(i) + '</td><td>' + formatCurrency(CURRENT_PLAN_VALUE) + '</td>';
+      currentPlanRows.appendChild(tr);
+    }
+
+    // Build new plan rows
+    var newPlanHeader = document.getElementById('newPlanHeader');
+    newPlanHeader.textContent = 'Novo Plano (' + months + ' faturas de ' + formatCurrency(installment) + ')';
+    var newPlanRows = document.getElementById('newPlanRows');
+    for (var j = 1; j <= months; j++) {
+      var tr2 = document.createElement('tr');
+      tr2.innerHTML = '<td>Fatura ' + j + '</td><td>' + formatCurrency(installment) + '</td>';
+      newPlanRows.appendChild(tr2);
+    }
+
+    // Back button preserves state - pass params back to index
+    var backParams = '?amount=' + amount + '&months=' + months + '&maintenance=' + (maintenance ? '1' : '0');
+    document.getElementById('backBtn').href = '../index.html' + backParams;
+    document.getElementById('backBtnFooter').href = '../index.html' + backParams;
+
+    // Forward params to signature page
+    var fwdParams = window.location.search;
+    document.getElementById('confirmBtn').href = 'signature.html' + fwdParams;
+  </script>
+</body>
+</html>
