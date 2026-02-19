@@ -39,15 +39,15 @@
     <section class="hero">
       <span class="hero__eyebrow">Exclusivo para você</span>
       <h1 class="hero__title">Você tem até <span class="text-green">R$ 4.000</span> de crédito disponível</h1>
-      <p class="hero__subtitle">Saque agora direto na sua conta e pague em parcelas fixas. O que sobrar, continua no seu MottuPay para usar quando quiser.</p>
+      <p class="hero__subtitle">Receive a cashback direto na sua conta e pague em faturas fixas. O que sobrar, continua no seu MottuPay para usar quando quiser.</p>
     </section>
 
     <!-- Simulator -->
     <section class="simulator">
-      <div class="section-label">Simule seu saque</div>
+      <div class="section-label">Simule seu cashback</div>
 
       <!-- Amount Slider -->
-      <div class="simulator__label">Quanto você quer sacar agora?</div>
+      <div class="simulator__label">Quanto você quer receber de cashback?</div>
       <div class="simulator__amount-display">
         <span class="simulator__amount-value"><small>R$</small> <span id="amountDisplay">2.000</span></span>
         <div class="simulator__total-credit">de <strong>R$ 4.000</strong> disponíveis</div>
@@ -56,7 +56,7 @@
       <!-- Slider with shadow card -->
       <div class="slider-card">
         <div class="slider-container">
-          <input type="range" class="slider" id="amountSlider" min="0" max="4000" step="100" value="2000">
+          <input type="range" class="slider slider--arrows" id="amountSlider" min="0" max="4000" step="100" value="2000">
         </div>
         <div class="slider-labels">
           <span>R$ 0</span>
@@ -85,7 +85,7 @@
       <!-- Minimum amount warning -->
       <div class="min-amount-warning" id="minAmountWarning" style="display: none;">
         <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
-        <span>Você precisa sacar no mínimo R$ 1.000 para utilizar o crédito</span>
+        <span>Você precisa selecionar no mínimo R$ 1.000 para receber o cashback</span>
       </div>
 
       <!-- Maintenance Option -->
@@ -102,7 +102,7 @@
       </div>
 
       <!-- Term Selector -->
-      <div class="simulator__label">Em quantas parcelas?</div>
+      <div class="simulator__label">Em quantas faturas?</div>
       <div class="term-selector">
         <button class="term-option" data-months="12" onclick="selectTerm(this)">
           12x
@@ -123,7 +123,7 @@
         <div class="result-row">
           <span class="result-row__label">
             <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-            Saque imediato
+            Cashback imediato
           </span>
           <span class="result-row__value result-row__value--green" id="resultImmediate">R$ 2.000,00</span>
         </div>
@@ -140,7 +140,7 @@
         <div class="result-row">
           <span class="result-row__label">
             <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
-            Parcela mensal
+            Fatura mensal
           </span>
           <span class="result-row__value result-row__value--green" id="resultInstallment">
             R$ 144,44
@@ -149,13 +149,14 @@
         </div>
         <div class="result-row result-row--info" id="pendingInstallmentsInfo">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-          <span>Você ainda tem <strong>4 parcelas pendentes</strong> do plano atual. O pagamento das novas parcelas começa no <strong>5º mês</strong>.</span>
+          <span>Você ainda tem <strong>4 faturas pendentes</strong> do plano atual. O pagamento das novas faturas começa no <strong>5º mês</strong>.</span>
         </div>
       </div>
 
       <div class="note">
         <svg class="note__icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         <span class="note__text">Seu plano será estendido por <strong id="noteTermMonths">18 meses</strong>. Você poderá transferir a moto para o seu nome a qualquer momento quitando o saldo restante.</span>
+
       </div>
     </section>
 
@@ -169,7 +170,7 @@
         </div>
         <div class="benefit-card__text">
           <div class="benefit-card__title">MottuPay ativo durante todo o plano</div>
-          <div class="benefit-card__description">Continue usando seu crédito restante para compras a qualquer momento até o fim do contrato.</div>
+          <div class="benefit-card__description">Continue usando seu crédito restante para compras a qualquer momento até o fim das faturas.</div>
         </div>
       </div>
 
@@ -202,7 +203,7 @@
         <div class="step__number">1</div>
         <div class="step__card">
           <div class="step__title">Escolha e assine</div>
-          <div class="step__description">Defina o valor do saque e o número de parcelas. Assine o novo contrato digitalmente.</div>
+          <div class="step__description">Defina o valor do cashback e o número de faturas. Assine o novo contrato digitalmente.</div>
         </div>
       </div>
 
@@ -217,8 +218,8 @@
       <div class="step">
         <div class="step__number">3</div>
         <div class="step__card">
-          <div class="step__title">Pague em parcelas fixas</div>
-          <div class="step__description">Parcelas mensais adicionadas ao seu plano. Sem surpresas, sem reajuste.</div>
+          <div class="step__title">Pague em faturas fixas</div>
+          <div class="step__description">Faturas mensais adicionadas ao seu plano. Sem surpresas, sem reajuste.</div>
         </div>
       </div>
     </section>
@@ -234,25 +235,25 @@
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            O valor que você escolher no simulador acima será depositado imediatamente na sua conta pessoal cadastrada. Além disso, o crédito restante fica disponível no seu MottuPay para você usar quando precisar, até o fim do plano.
+            O valor escolhido será depositado imediatamente na sua conta pessoal cadastrada. Além disso, o crédito restante fica disponível no seu MottuPay para você usar quando precisar, até o fim das faturas.
           </div>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-item__header" onclick="toggleAccordion(this)">
-          <span>Qual será o valor das parcelas?</span>
+          <span>Qual será o valor das faturas?</span>
           <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            Depende do valor sacado e do prazo escolhido. Para um saque de R$ 1.000, por exemplo:
+            Depende do valor escolhido e do prazo. Para um cashback de R$ 4.000, por exemplo (sem manutenção inclusa):
             <table class="faq-table">
-              <tr><td>12 parcelas</td><td>R$ 100,00/mês</td></tr>
-              <tr><td>18 parcelas</td><td>R$ 72,22/mês</td></tr>
-              <tr><td>24 parcelas</td><td>R$ 58,33/mês</td></tr>
+              <tr><td>12 faturas</td><td>R$ 500,00/mês</td></tr>
+              <tr><td>18 faturas</td><td>R$ 388,89/mês</td></tr>
+              <tr><td>24 faturas</td><td>R$ 333,33/mês</td></tr>
             </table>
-            O valor pode aumentar caso você realize compras adicionais pelo MottuPay.
+            Esses valores <strong>não incluem manutenção</strong>. Caso opte por incluir manutenção, será acrescido R$ 200/mês ao valor da fatura.
           </div>
         </div>
       </div>
@@ -264,7 +265,7 @@
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            O valor do saque será depositado imediatamente, assim que você assinar o contrato. O crédito adicional do MottuPay estará disponível para uso conforme você precisar.
+            O valor do cashback será depositado imediatamente, assim que você assinar o contrato. O crédito adicional do MottuPay estará disponível para uso conforme você precisar.
           </div>
         </div>
       </div>
@@ -276,7 +277,7 @@
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            O processo tem três etapas: assinatura digital do contrato, depósito imediato do valor na sua conta e extensão automática do prazo do plano. A moto será transferida para o seu nome ao final de todas as parcelas.
+            O processo tem três etapas: assinatura digital do contrato, depósito imediato do valor na sua conta e extensão automática do prazo do plano. A moto será transferida para o seu nome ao final de todas as faturas.
           </div>
         </div>
       </div>
@@ -295,12 +296,12 @@
 
       <div class="accordion-item">
         <button class="accordion-item__header" onclick="toggleAccordion(this)">
-          <span>O que acontece com as parcelas que tenho em aberto?</span>
+          <span>O que acontece com as faturas que tenho em aberto?</span>
           <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            Você ainda tem 4 parcelas em aberto. Os valores da sua parcela não mudam até você pagar essas quatro parcelas, após isso você começará a pagar o valor ilustrado em sua simulação.
+            Você ainda tem 4 faturas em aberto. Os valores da sua fatura não mudam até você pagar essas quatro faturas, após isso você começará a pagar o valor ilustrado em sua simulação.
           </div>
         </div>
       </div>
@@ -312,7 +313,7 @@
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            Depois que você finalizar seu plano, você pode transferir sua moto a qualquer momento, mediante pagamento antecipado de todos os débitos.
+            Depois que você finalizar seu plano, você pode transferir sua moto a qualquer momento, mediante pagamento antecipado de todas as faturas restantes.
           </div>
         </div>
       </div>
@@ -348,7 +349,7 @@
         </button>
         <div class="accordion-item__body">
           <div class="accordion-item__content">
-            O novo plano segue as seguintes regras: pagamento mensal, a moto permanece no nome da Mottu e suporte, manutenção e demais produtos continuam disponíveis mediante aprovação e pagamento.
+            O novo plano segue as seguintes regras: pagamento mensal via fatura, a moto permanece no nome da Mottu e suporte, manutenção e demais produtos continuam disponíveis mediante aprovação e pagamento.
           </div>
         </div>
       </div>
@@ -363,7 +364,7 @@
     <!-- Footer CTA -->
     <div class="page-footer">
       <a href="pages/confirmation.html" class="btn btn--primary btn--disabled" id="ctaButton" onclick="return handleCtaClick(event)">
-        Quero sacar R$ 2.000,00 agora
+        Quero receber R$ 2.000,00 de cashback
       </a>
     </div>
 
@@ -433,8 +434,13 @@
       const pctRight = 100 - pctLeft;
       splitBarLeft.style.width = pctLeft + '%';
       splitBarRight.style.width = pctRight + '%';
-      splitLeftValue.textContent = 'R$ ' + formatDisplay(amount);
-      splitRightValue.textContent = 'R$ ' + formatDisplay(remaining);
+      if (isBelowMin) {
+        splitLeftValue.textContent = '-';
+        splitRightValue.textContent = '-';
+      } else {
+        splitLeftValue.textContent = 'R$ ' + formatDisplay(amount);
+        splitRightValue.textContent = 'R$ ' + formatDisplay(remaining);
+      }
 
       // MottuPay remaining
       if (remaining > 0) {
@@ -449,7 +455,7 @@
       if (amount > 0) {
         resultInstallment.innerHTML = formatCurrency(installment) +
           (maintenanceIncluded ? '<span class="result-row__sub">inclui R$ 200 de manutenção</span>' : '') +
-          '<span class="result-row__sub" id="resultTermLabel">em ' + selectedMonths + ' parcelas</span>';
+          '<span class="result-row__sub" id="resultTermLabel">em ' + selectedMonths + ' faturas</span>';
       } else {
         resultInstallment.innerHTML = '—' +
           '<span class="result-row__sub">selecione um valor acima</span>';
@@ -462,10 +468,10 @@
       if (isBelowMin) {
         minAmountWarning.style.display = 'flex';
         ctaButton.classList.add('btn--disabled');
-        ctaButton.textContent = 'Quero sacar R$ ' + formatDisplay(amount) + ',00 agora';
+        ctaButton.textContent = 'Selecione no mínimo R$ 1.000';
       } else {
         minAmountWarning.style.display = 'none';
-        ctaButton.textContent = 'Quero sacar ' + formatCurrency(amount) + ' agora';
+        ctaButton.textContent = 'Quero receber ' + formatCurrency(amount) + ' de cashback';
         updateCtaState();
       }
 
@@ -491,6 +497,16 @@
         e.preventDefault();
         return false;
       }
+      // Pass state to confirmation page via URL params
+      var amount = parseInt(amountSlider.value);
+      var remaining = Math.max(MAX_CREDIT - amount, MIN_CREDIT_REMAINING);
+      var installment = calculateInstallment(amount, selectedMonths);
+      var params = '?amount=' + amount +
+        '&months=' + selectedMonths +
+        '&maintenance=' + (maintenanceIncluded ? '1' : '0') +
+        '&remaining=' + remaining +
+        '&installment=' + installment.toFixed(2);
+      ctaButton.href = 'pages/confirmation.html' + params;
       return true;
     }
 
@@ -530,6 +546,26 @@
       });
     }, { threshold: 0.1 });
     observer.observe(scrollSentinel);
+
+    // Restore state from URL params (when user clicks "back")
+    (function restoreState() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.has('amount')) {
+        amountSlider.value = parseInt(params.get('amount'));
+      }
+      if (params.has('months')) {
+        var savedMonths = parseInt(params.get('months'));
+        selectedMonths = savedMonths;
+        document.querySelectorAll('.term-option').forEach(function(el) {
+          el.classList.remove('active');
+          if (parseInt(el.dataset.months) === savedMonths) el.classList.add('active');
+        });
+      }
+      if (params.has('maintenance')) {
+        var savedMaint = params.get('maintenance') === '1';
+        selectMaintenance(savedMaint);
+      }
+    })();
 
     // Init
     amountSlider.addEventListener('input', updateSimulator);
