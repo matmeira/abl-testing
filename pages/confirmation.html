@@ -36,21 +36,19 @@
     </div>
 
     <div class="page-content">
-      <div class="spacer-md"></div>
-
       <!-- Back Button - preserves state via URL params -->
       <a href="../index.html" class="back-btn" id="backBtn">
         <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
         Voltar
       </a>
 
-      <div class="spacer-md"></div>
+      <div class="spacer-sm"></div>
 
       <h1 class="title">Confirmação do <span class="text-green">Cashback</span></h1>
       <p class="subtitle">Verifique os dados antes de continuar.</p>
 
       <!-- Confirmation Card -->
-      <div class="card card--accent">
+      <div class="card card--accent card--compact">
         <div class="card__title">Valor a Receber</div>
 
         <div class="card-row">
@@ -64,20 +62,6 @@
             <div class="card-row__value card-row__value--large" id="confirmAmount">R$ 2.000,00</div>
           </div>
         </div>
-
-        <div class="card-row">
-          <div class="card-row__icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-            </svg>
-          </div>
-          <div class="card-row__text">
-            <div class="card-row__label">Limite MottuPay</div>
-            <div class="card-row__value" id="confirmMottuPay">R$ 2.000,00</div>
-          </div>
-        </div>
-
-        <div class="divider"></div>
 
         <div class="card-row">
           <div class="card-row__icon">
@@ -115,56 +99,50 @@
           </div>
         </div>
 
-        <div class="card-row">
-          <div class="card-row__icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-            </svg>
-          </div>
-          <div class="card-row__text">
-            <div class="card-row__label">Limite MottuPay restante *</div>
-            <div class="card-row__value" id="confirmMottuPayLimit">R$ 2.000,00</div>
-            <div class="card-row__footnote">* Limite pode ser alterado a qualquer momento durante o plano</div>
-          </div>
-        </div>
       </div>
 
-      <!-- Payment Simulation -->
-      <div class="card">
-        <div class="card__title">Simulação de Pagamentos</div>
+      <!-- Payment Simulation (collapsible) -->
+      <div class="accordion-item accordion-item--tall">
+        <button class="accordion-item__header" onclick="this.parentElement.classList.toggle('active')">
+          <span>Simulação de Pagamentos</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            <!-- Current Plan -->
+            <div class="payment-sim__section">
+              <div class="payment-sim__header">Plano Atual (4 faturas restantes de R$ 600,00)</div>
+              <table class="payment-sim__table">
+                <thead>
+                  <tr>
+                    <th>Mês</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody id="currentPlanRows">
+                  <!-- Filled by JS -->
+                </tbody>
+              </table>
+            </div>
 
-        <!-- Current Plan -->
-        <div class="payment-sim__section">
-          <div class="payment-sim__header">Plano Atual (4 faturas restantes de R$ 600,00)</div>
-          <table class="payment-sim__table">
-            <thead>
-              <tr>
-                <th>Mês</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody id="currentPlanRows">
-              <!-- Filled by JS -->
-            </tbody>
-          </table>
-        </div>
+            <div class="divider" style="margin: 12px 0;"></div>
 
-        <div class="divider" style="margin: 12px 0;"></div>
-
-        <!-- New Plan (cashback installments) -->
-        <div class="payment-sim__section">
-          <div class="payment-sim__header" id="newPlanHeader">Novo Plano (18 faturas)</div>
-          <table class="payment-sim__table">
-            <thead>
-              <tr>
-                <th>Fatura</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody id="newPlanRows">
-              <!-- Filled by JS -->
-            </tbody>
-          </table>
+            <!-- New Plan (cashback installments) -->
+            <div class="payment-sim__section">
+              <div class="payment-sim__header" id="newPlanHeader">Novo Plano (18 faturas)</div>
+              <table class="payment-sim__table">
+                <thead>
+                  <tr>
+                    <th>Mês</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody id="newPlanRows">
+                  <!-- Filled by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -229,13 +207,11 @@
 
     // Populate confirmation values
     document.getElementById('confirmAmount').textContent = formatCurrency(amount);
-    document.getElementById('confirmMottuPay').textContent = formatCurrency(remaining);
     document.getElementById('confirmPlan').textContent = months + 'x de ' + formatCurrency(installment);
     document.getElementById('confirmDate').textContent = 'Hoje (' + getTodayFormatted() + ')';
     document.getElementById('confirmMaintenance').textContent = maintenance
       ? 'Inclusos (+ R$ 200,00/mês)'
       : 'Não inclusos';
-    document.getElementById('confirmMottuPayLimit').textContent = formatCurrency(remaining);
 
     // Build current plan rows
     var currentPlanRows = document.getElementById('currentPlanRows');
@@ -245,13 +221,14 @@
       currentPlanRows.appendChild(tr);
     }
 
-    // Build new plan rows
+    // Build new plan rows — use month names starting after current plan ends
     var newPlanHeader = document.getElementById('newPlanHeader');
     newPlanHeader.textContent = 'Novo Plano (' + months + ' faturas de ' + formatCurrency(installment) + ')';
     var newPlanRows = document.getElementById('newPlanRows');
-    for (var j = 1; j <= months; j++) {
+    var newPlanStartOffset = CURRENT_PLAN_INSTALLMENTS + 1;
+    for (var j = 0; j < months; j++) {
       var tr2 = document.createElement('tr');
-      tr2.innerHTML = '<td>Fatura ' + j + '</td><td>' + formatCurrency(installment) + '</td>';
+      tr2.innerHTML = '<td>' + getMonthName(newPlanStartOffset + j) + '</td><td>' + formatCurrency(installment) + '</td>';
       newPlanRows.appendChild(tr2);
     }
 
