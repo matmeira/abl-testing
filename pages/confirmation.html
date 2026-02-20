@@ -72,7 +72,7 @@
             </svg>
           </div>
           <div class="card-row__text">
-            <div class="card-row__label">Crédito MottuPay</div>
+            <div class="card-row__label">Limite MottuPay</div>
             <div class="card-row__value" id="confirmMottuPay">R$ 2.000,00</div>
           </div>
         </div>
@@ -110,7 +110,7 @@
             </svg>
           </div>
           <div class="card-row__text">
-            <div class="card-row__label">Manutenção</div>
+            <div class="card-row__label">Suporte e Manutenção</div>
             <div class="card-row__value" id="confirmMaintenance">Inclusa (+ R$ 200/mês)</div>
           </div>
         </div>
@@ -233,8 +233,8 @@
     document.getElementById('confirmPlan').textContent = months + 'x de ' + formatCurrency(installment);
     document.getElementById('confirmDate').textContent = 'Hoje (' + getTodayFormatted() + ')';
     document.getElementById('confirmMaintenance').textContent = maintenance
-      ? 'Inclusa (+ R$ 200,00/mês)'
-      : 'Não inclusa';
+      ? 'Inclusos (+ R$ 200,00/mês)'
+      : 'Não inclusos';
     document.getElementById('confirmMottuPayLimit').textContent = formatCurrency(remaining);
 
     // Build current plan rows
