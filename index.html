@@ -452,8 +452,9 @@
       amountDisplay.textContent = formatDisplay(amount);
       resultImmediate.textContent = formatCurrency(amount);
 
-      // Split visualization
-      const pctLeft = (amount / MAX_CREDIT) * 100;
+      // Split visualization — use actual total so min-remaining is visible
+      const total = amount + remaining;
+      const pctLeft = (amount / total) * 100;
       const pctRight = 100 - pctLeft;
       splitBarLeft.style.width = pctLeft + '%';
       splitBarRight.style.width = pctRight + '%';
