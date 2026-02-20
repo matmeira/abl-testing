@@ -235,6 +235,34 @@ body {
   border-left: 3px solid var(--color-green);
 }
 
+.card--compact {
+  padding: 14px 16px;
+}
+
+.card--compact .card__title {
+  margin-bottom: 8px;
+}
+
+.card--compact .card-row {
+  padding: 8px 0;
+  gap: 10px;
+}
+
+.card--compact .card-row__icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+}
+
+.card--compact .card-row__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.card--compact .card-row__value--large {
+  font-size: 1.25rem;
+}
+
 .card__title {
   font-size: 0.6875rem;
   font-weight: 700;
@@ -348,6 +376,11 @@ body {
 
 .accordion-item.active .accordion-item__body {
   max-height: 300px;
+}
+
+.accordion-item--tall.active .accordion-item__body {
+  max-height: 2000px;
+  overflow-y: auto;
 }
 
 .accordion-item__content {
