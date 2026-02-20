@@ -53,7 +53,7 @@
         <div class="simulator__total-credit">de <strong>R$ 4.000</strong> disponíveis</div>
       </div>
 
-      <!-- Slider with shadow card -->
+      <!-- Slider with stacked bars -->
       <div class="slider-card">
         <div class="slider-container">
           <input type="range" class="slider slider--arrows" id="amountSlider" min="0" max="4000" step="100" value="2000">
@@ -63,20 +63,26 @@
           <span>R$ 4.000</span>
         </div>
 
-        <!-- Split visualization -->
-        <div class="slider-split">
-          <div class="slider-split__left" id="sliderSplitLeft">
-            <div class="slider-split__bar slider-split__bar--green" id="splitBarLeft" style="width: 50%"></div>
-            <div class="slider-split__info">
-              <span class="slider-split__value slider-split__value--green" id="splitLeftValue">R$ 2.000</span>
-              <span class="slider-split__desc">Você recebe hoje na conta</span>
-            </div>
+        <!-- Stacked bar visualization -->
+        <div class="stacked-bar">
+          <div class="stacked-bar__track">
+            <div class="stacked-bar__fill stacked-bar__fill--green" id="splitBarLeft" style="width: 50%"></div>
+            <div class="stacked-bar__fill stacked-bar__fill--gray" id="splitBarRight" style="width: 50%"></div>
           </div>
-          <div class="slider-split__right" id="sliderSplitRight">
-            <div class="slider-split__bar slider-split__bar--gray" id="splitBarRight" style="width: 50%"></div>
-            <div class="slider-split__info">
-              <span class="slider-split__value" id="splitRightValue">R$ 2.000</span>
-              <span class="slider-split__desc">Limite via MottuPay</span>
+          <div class="stacked-bar__legends">
+            <div class="stacked-bar__legend">
+              <span class="stacked-bar__dot stacked-bar__dot--green"></span>
+              <span class="stacked-bar__legend-text">
+                <span class="stacked-bar__value stacked-bar__value--green" id="splitLeftValue">R$ 2.000</span>
+                <span class="stacked-bar__desc">Cashback imediato</span>
+              </span>
+            </div>
+            <div class="stacked-bar__legend stacked-bar__legend--right">
+              <span class="stacked-bar__legend-text stacked-bar__legend-text--right">
+                <span class="stacked-bar__value" id="splitRightValue">R$ 2.000</span>
+                <span class="stacked-bar__desc">Limite MottuPay</span>
+              </span>
+              <span class="stacked-bar__dot stacked-bar__dot--gray"></span>
             </div>
           </div>
         </div>
@@ -89,7 +95,7 @@
       </div>
 
       <!-- Maintenance Option -->
-      <div class="maintenance-option">
+      <div class="maintenance-option" id="maintenanceOption">
         <div class="simulator__label">Você quer incluir suporte e manutenção durante esse período adicional?</div>
         <div class="maintenance-toggle">
           <button class="maintenance-btn active" id="maintenanceYes" onclick="selectMaintenance(true)">Sim</button>
@@ -102,8 +108,8 @@
       </div>
 
       <!-- Term Selector -->
-      <div class="simulator__label">Em quantas faturas?</div>
-      <div class="term-selector">
+      <div class="simulator__label" id="termLabel">Em quantas faturas?</div>
+      <div class="term-selector" id="termSelector">
         <button class="term-option" data-months="12" onclick="selectTerm(this)">
           12x
           <span>1 ano</span>
@@ -119,7 +125,7 @@
       </div>
 
       <!-- Result Card -->
-      <div class="result-card">
+      <div class="result-card" id="resultCard">
         <div class="result-row">
           <span class="result-row__label">
             <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -153,7 +159,7 @@
         </div>
       </div>
 
-      <div class="note">
+      <div class="note" id="noteSection">
         <svg class="note__icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         <span class="note__text">Seu plano será estendido por <strong id="noteTermMonths">18 meses</strong>. Você poderá transferir a moto para o seu nome a qualquer momento quitando o saldo restante.</span>
 
@@ -236,6 +242,18 @@
         <div class="accordion-item__body">
           <div class="accordion-item__content">
             O valor escolhido será depositado imediatamente na sua conta pessoal cadastrada. Além disso, o limite restante fica disponível no seu MottuPay para você usar quando precisar, até o fim das faturas.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-item__header" onclick="toggleAccordion(this)">
+          <span>Minhas parcelas são fixas?</span>
+          <svg class="accordion-item__chevron" viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </button>
+        <div class="accordion-item__body">
+          <div class="accordion-item__content">
+            Suas parcelas são fixas, entretanto não cobrem gastos do seu limite MottuPay. Todos os gastos MottuPay serão cobrados adicional ao valor contratado, da mesma maneira que ocorre hoje em seu plano.
           </div>
         </div>
       </div>
@@ -393,6 +411,11 @@
     const splitRightValue = document.getElementById('splitRightValue');
     const splitBarLeft = document.getElementById('splitBarLeft');
     const splitBarRight = document.getElementById('splitBarRight');
+    const maintenanceOption = document.getElementById('maintenanceOption');
+    const termLabel = document.getElementById('termLabel');
+    const termSelector = document.getElementById('termSelector');
+    const resultCard = document.getElementById('resultCard');
+    const noteSection = document.getElementById('noteSection');
 
     let selectedMonths = 18;
     let maintenanceIncluded = true;
@@ -464,14 +487,26 @@
       // Note
       noteTermMonths.textContent = selectedMonths + ' meses';
 
-      // Minimum warning & CTA state
+      // Minimum warning & CTA state + disable sections below minimum
       if (isBelowMin) {
         minAmountWarning.style.display = 'flex';
         ctaButton.classList.add('btn--disabled');
         ctaButton.textContent = 'Selecione no mínimo R$ 1.000';
+        // Disable maintenance, term, result card, note
+        maintenanceOption.classList.add('section--disabled');
+        termLabel.classList.add('section--disabled');
+        termSelector.classList.add('section--disabled');
+        resultCard.style.display = 'none';
+        noteSection.style.display = 'none';
       } else {
         minAmountWarning.style.display = 'none';
         ctaButton.textContent = 'Quero receber ' + formatCurrency(amount) + ' de cashback';
+        // Enable maintenance, term, result card, note
+        maintenanceOption.classList.remove('section--disabled');
+        termLabel.classList.remove('section--disabled');
+        termSelector.classList.remove('section--disabled');
+        resultCard.style.display = '';
+        noteSection.style.display = '';
         updateCtaState();
       }
 
