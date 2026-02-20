@@ -53,37 +53,33 @@
         <div class="simulator__total-credit">de <strong>R$ 4.000</strong> disponíveis</div>
       </div>
 
-      <!-- Slider with stacked bars -->
+      <!-- Combined slider + stacked bar -->
       <div class="slider-card">
-        <div class="slider-container">
-          <input type="range" class="slider slider--arrows" id="amountSlider" min="0" max="4000" step="100" value="2000">
+        <div class="slider-bar">
+          <div class="slider-bar__track">
+            <div class="slider-bar__fill slider-bar__fill--green" id="splitBarLeft" style="width: 50%"></div>
+            <div class="slider-bar__fill slider-bar__fill--gray" id="splitBarRight" style="width: 50%"></div>
+          </div>
+          <input type="range" class="slider-bar__input" id="amountSlider" min="0" max="4000" step="100" value="2000">
         </div>
-        <div class="slider-labels">
+        <div class="slider-bar__labels">
           <span>R$ 0</span>
           <span>R$ 4.000</span>
         </div>
-
-        <!-- Stacked bar visualization -->
-        <div class="stacked-bar">
-          <div class="stacked-bar__track">
-            <div class="stacked-bar__fill stacked-bar__fill--green" id="splitBarLeft" style="width: 50%"></div>
-            <div class="stacked-bar__fill stacked-bar__fill--gray" id="splitBarRight" style="width: 50%"></div>
+        <div class="slider-bar__legends">
+          <div class="slider-bar__legend">
+            <span class="slider-bar__dot slider-bar__dot--green"></span>
+            <span class="slider-bar__legend-text">
+              <span class="slider-bar__value slider-bar__value--green" id="splitLeftValue">R$ 2.000</span>
+              <span class="slider-bar__desc">Cashback imediato</span>
+            </span>
           </div>
-          <div class="stacked-bar__legends">
-            <div class="stacked-bar__legend">
-              <span class="stacked-bar__dot stacked-bar__dot--green"></span>
-              <span class="stacked-bar__legend-text">
-                <span class="stacked-bar__value stacked-bar__value--green" id="splitLeftValue">R$ 2.000</span>
-                <span class="stacked-bar__desc">Cashback imediato</span>
-              </span>
-            </div>
-            <div class="stacked-bar__legend stacked-bar__legend--right">
-              <span class="stacked-bar__legend-text stacked-bar__legend-text--right">
-                <span class="stacked-bar__value" id="splitRightValue">R$ 2.000</span>
-                <span class="stacked-bar__desc">Limite MottuPay</span>
-              </span>
-              <span class="stacked-bar__dot stacked-bar__dot--gray"></span>
-            </div>
+          <div class="slider-bar__legend slider-bar__legend--right">
+            <span class="slider-bar__legend-text slider-bar__legend-text--right">
+              <span class="slider-bar__value" id="splitRightValue">R$ 2.000</span>
+              <span class="slider-bar__desc">Limite MottuPay</span>
+            </span>
+            <span class="slider-bar__dot slider-bar__dot--gray"></span>
           </div>
         </div>
       </div>
@@ -514,10 +510,7 @@
         updateCtaState();
       }
 
-      // Update slider track fill
-      const pct = (amount / MAX_CREDIT) * 100;
-      amountSlider.style.background =
-        'linear-gradient(to right, #4CAF50 0%, #4CAF50 ' + pct + '%, #333 ' + pct + '%, #333 100%)';
+      // (slider track fill is handled by stacked bar segments)
     }
 
     function updateCtaState() {
