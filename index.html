@@ -39,7 +39,7 @@
     <section class="hero">
       <span class="hero__eyebrow">Exclusivo para você</span>
       <h1 class="hero__title">Receba até <span class="text-green">R$ 4.000</span> de cashback imediatamente</h1>
-      <p class="hero__subtitle">Receba seu cashback direto na sua conta e pague em faturas fixas. O que sobrar, continua como limite no seu MottuPay para usar quando quiser.</p>
+      <p class="hero__subtitle">Receba seu cashback direto na sua conta ao estender seu plano e pague em faturas fixas. O que sobrar, continua como limite no seu MottuPay para usar quando quiser.</p>
     </section>
 
     <!-- Simulator -->
@@ -90,19 +90,6 @@
         <span>Você precisa selecionar no mínimo R$ 1.000 para receber o cashback</span>
       </div>
 
-      <!-- Maintenance Option -->
-      <div class="maintenance-option" id="maintenanceOption">
-        <div class="simulator__label">Você quer incluir suporte e manutenção durante esse período adicional?</div>
-        <div class="maintenance-toggle">
-          <button class="maintenance-btn active" id="maintenanceYes" onclick="selectMaintenance(true)">Sim</button>
-          <button class="maintenance-btn" id="maintenanceNo" onclick="selectMaintenance(false)">Não</button>
-        </div>
-        <div class="maintenance-info" id="maintenanceInfo">
-          <span class="maintenance-info__cost">+ R$ 200,00/mês</span>
-          <span class="maintenance-info__note">Suporte e manutenção serão cobrados após o término do seu plano atual.</span>
-        </div>
-      </div>
-
       <!-- Term Selector -->
       <div class="simulator__label" id="termLabel">Em quantas faturas?</div>
       <div class="term-selector" id="termSelector">
@@ -118,6 +105,19 @@
           24x
           <span>2 anos</span>
         </button>
+      </div>
+
+      <!-- Maintenance Option -->
+      <div class="maintenance-option" id="maintenanceOption">
+        <div class="simulator__label">Você quer incluir suporte e manutenção durante esse período adicional?</div>
+        <div class="maintenance-toggle">
+          <button class="maintenance-btn active" id="maintenanceYes" onclick="selectMaintenance(true)">Sim</button>
+          <button class="maintenance-btn" id="maintenanceNo" onclick="selectMaintenance(false)">Não</button>
+        </div>
+        <div class="maintenance-info" id="maintenanceInfo">
+          <span class="maintenance-info__cost">+ R$ 200,00/mês</span>
+          <span class="maintenance-info__note">Suporte e manutenção serão cobrados após o término do seu plano atual.</span>
+        </div>
       </div>
 
       <!-- Result Card -->
